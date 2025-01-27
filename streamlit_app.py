@@ -14,9 +14,9 @@ stock_list = st.sidebar.text_input(
 with st.sidebar:
     timeframe = st.select_slider(
         "Select the timeframe on which to run the strategy",
-        ("5y","1y","9mo","3mo","1mo","5d","1d"),height=100
+        ("5y","1y","9mo","3mo","1mo","5d","1d")
     )
 
 df=yf.download(stock_list.split(),timeframe)
 
-st.dataframe(df)
+st.dataframe(df,height=100)
