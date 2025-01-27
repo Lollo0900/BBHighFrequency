@@ -1,7 +1,8 @@
 import streamlit as st
 import yfinance as yf
 
-st.write("Hello there")
+st.write("Here we are going to interactively benchmark a Bollinger Bands Strategy"
+         "on a chosen set of stocks")
 
 import streamlit as st
 
@@ -22,6 +23,4 @@ with st.sidebar:
     )
 
 df=yf.download(stock_list.replace(" ",", "),start=start_date,end=end_date,auto_adjust=False)
-st.write(df.shape)
 st.dataframe(df,height=200)
-st.dataframe(df["Adj Close"])
