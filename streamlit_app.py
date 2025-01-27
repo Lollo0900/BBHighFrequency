@@ -62,7 +62,9 @@ st.table(jtest_trace)
 
 
 spread = construct_spread(df['Adj Close'], hedge_ratios=j_hedge_ratios.iloc[0])
-st.pyplot(plt.plot(spread))
+fig=plt.figure(1)
+plt.plot(spread)
+st.pyplot(fig)
 half_life=get_half_life_of_mean_reversion(spread)
 st.write(half_life)
 # Creating a strategy
