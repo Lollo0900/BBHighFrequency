@@ -17,6 +17,5 @@ with st.sidebar:
         ('5y','1y','9mo','3mo','1mo','5d','1d')
     )
 
-df=yf.download(stock_list.split(),timeframe)
-st.write(timeframe.replace(",'))
+df=yf.download(stock_list.split(),period=timeframe)
 st.dataframe(df,height=100)
