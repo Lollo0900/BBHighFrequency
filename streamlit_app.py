@@ -2,7 +2,7 @@ import streamlit as st
 import yfinance as yf
 
 st.write("We are going to interactively benchmark a Bollinger Bands Strategy"
-         " on a chosen set of stocks".)
+         " on a chosen set of stocks.")
 
 import streamlit as st
 
@@ -29,5 +29,5 @@ df=yf.download(stock_list.replace(" ",", "),start=start_date,end=end_date,auto_a
 st.write("Here we summarise the historical data for the chosen stocks.")
 st.dataframe(df,height=200)
 
-st.write("A first Johansen test on the first " + lookback + "data gives the following results" )
+st.write("An initial Johansen test on the first " + lookback + "data gives the following results" )
 
