@@ -1,6 +1,12 @@
 import streamlit as st
 import yfinance as yf
+import pandas as pd
+import matplotlib.pyplot as plt
+from arbitragelab.hedge_ratios import construct_spread
+from arbitragelab.trading import BollingerBandsTradingRule
+from arbitragelab.cointegration_approach import get_half_life_of_mean_reversion
 from arbitragelab.cointegration_approach.johansen import JohansenPortfolio
+
 
 st.write("We are going to interactively benchmark a Bollinger Bands Strategy"
          " on a chosen set of stocks.")
@@ -25,6 +31,9 @@ with (st.sidebar):
     lookback=st.text_input("Input the lookback window in absolute units.","5"
     ,placeholder="e.g. 10"
     )
+    options={"No deterministic Term":-1 ,"Constant Term":0 ,"Linear Trend":1}
+    johansen_option=st.selectbox("Select the Johansen test model:",options.keys())
+    johansen_option=options[johansen_option]
 
 df=yf.download(stock_list.replace(" ",", "),start=start_date,end=end_date,auto_adjust=False)
 st.write("Here we summarise the historical data for the chosen stocks.")
@@ -33,12 +42,29 @@ st.dataframe(df,height=200)
 st.write("An initial Johansen test on the first " + lookback + " data gives the following results:" )
 
 j_portfolio=JohansenPortfolio()
-# Fitting the data on a dataset of three elements with constant term
-j_portfolio.fit(train_three_elements, det_order=1)
-
-
+# Fitting the data on a dataset
+j_portfolio.fit(df['Adj Close'], det_order=johansen_option)
 # Getting results of the eigenvalue and trace Johansen tests
 j_eigenvalue_statistics = j_portfolio.johansen_eigen_statistic
 j_trace_statistics = j_portfolio.johansen_trace_statistic
 j_cointegration_vectors = j_portfolio.cointegration_vectors
 j_hedge_ratios = j_portfolio.hedge_ratios
+
+data={'Eigen Statistic': j_eigenvalue_statistics.iloc[-1],'Confidence 90%':j_eigenvalue_statistics.iloc[0],
+      'Confidence 95%':j_eigenvalue_statistics.iloc[1],'Confidence 99%':j_eigenvalue_statistics.iloc[2]}
+jtest_eigen=pd.DataFrame(data)
+st.table(jtest_eigen)
+data={'Trace Statistic': j_trace_statistics.iloc[-1],'Confidence 90%':j_trace_statistics.iloc[0],
+      'Confidence 95%':j_trace_statistics.iloc[1],'Confidence 99%':j_trace_statistics.iloc[2]}
+jtest_trace=pd.DataFrame(data)
+st.table(jtest_trace)
+
+
+
+spread = construct_spread(df['Adj Close'], hedge_ratios=j_hedge_ratios.iloc[0])
+st.pyplot(plt.plot(spread))
+half_life=get_half_life_of_mean_reversion(spread)
+st.write(half_life)
+# Creating a strategy
+strategy = BollingerBandsTradingRule(sma_window=20, std_window=20,
+                                     entry_z_score=2.5, exit_z_score_delta=3)

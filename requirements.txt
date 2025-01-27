@@ -1,2 +1,4 @@
 yfinance
 arbitragelab
+pandas
+matplotlib
