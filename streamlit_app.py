@@ -6,7 +6,7 @@ import streamlit as st
 
 # Using object notation
 stock_list = st.sidebar.text_input(
-    "How would you like to be contacted?", "MSFT AAPL"
+    "How would you like to be contacted?", "MSFT AAPL",
     placeholder="e.g. MSFT AAPL"
 )
 
