@@ -5,9 +5,9 @@ st.write("Hello there")
 import streamlit as st
 
 # Using object notation
-add_selectbox = st.sidebar.text_input(
+stock_list = st.sidebar.text_input(
     "How would you like to be contacted?",
-    "Write here"
+    placeholder="e.g. MSFT AAPL"
 )
 
 # Using "with" notation
