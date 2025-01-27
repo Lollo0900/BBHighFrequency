@@ -7,7 +7,7 @@ import streamlit as st
 # Using object notation
 add_selectbox = st.sidebar.text_inpput(
     "How would you like to be contacted?",
-    
+    "Write here"
 )
 
 # Using "with" notation
