@@ -18,5 +18,5 @@ with st.sidebar:
     )
 
 df=yf.download(stock_list.split(),timeframe)
-
+st.write(timeframe)
 st.dataframe(df,height=100)
