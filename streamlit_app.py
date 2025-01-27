@@ -32,10 +32,11 @@ st.dataframe(df,height=200)
 
 st.write("An initial Johansen test on the first " + lookback + " data gives the following results:" )
 
+j_portfolio=JohansenPortfolio()
 # Fitting the data on a dataset of three elements with constant term
 j_portfolio.fit(train_three_elements, det_order=1)
 
-#j_portfolio
+
 # Getting results of the eigenvalue and trace Johansen tests
 j_eigenvalue_statistics = j_portfolio.johansen_eigen_statistic
 j_trace_statistics = j_portfolio.johansen_trace_statistic
