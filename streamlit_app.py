@@ -1,5 +1,6 @@
 import streamlit as st
 import yfinance as yf
+from arbitragelab.cointegration_approach.johansen import JohansenPortfolio
 
 st.write("We are going to interactively benchmark a Bollinger Bands Strategy"
          " on a chosen set of stocks.")
@@ -29,5 +30,14 @@ df=yf.download(stock_list.replace(" ",", "),start=start_date,end=end_date,auto_a
 st.write("Here we summarise the historical data for the chosen stocks.")
 st.dataframe(df,height=200)
 
-st.write("An initial Johansen test on the first " + lookback + "data gives the following results" )
+st.write("An initial Johansen test on the first " + lookback + " data gives the following results:" )
 
+# Fitting the data on a dataset of three elements with constant term
+j_portfolio.fit(train_three_elements, det_order=1)
+
+#j_portfolio
+# Getting results of the eigenvalue and trace Johansen tests
+j_eigenvalue_statistics = j_portfolio.johansen_eigen_statistic
+j_trace_statistics = j_portfolio.johansen_trace_statistic
+j_cointegration_vectors = j_portfolio.cointegration_vectors
+j_hedge_ratios = j_portfolio.hedge_ratios
