@@ -5,9 +5,9 @@ st.write("Hello there")
 import streamlit as st
 
 # Using object notation
-add_selectbox = st.sidebar.selectbox(
+add_selectbox = st.sidebar.text_inpput(
     "How would you like to be contacted?",
-    ("Email", "Home phone", "Mobile phone")
+    
 )
 
 # Using "with" notation
@@ -16,3 +16,5 @@ with st.sidebar:
         "Choose a shipping method",
         ("Standard (5-15 days)", "Express (2-5 days)")
     )
+
+
