@@ -5,7 +5,7 @@ st.write("Hello there")
 import streamlit as st
 
 # Using object notation
-add_selectbox = st.sidebar.text_inpput(
+add_selectbox = st.sidebar.text_input(
     "How would you like to be contacted?",
     "Write here"
 )
