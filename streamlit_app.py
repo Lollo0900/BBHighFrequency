@@ -6,15 +6,14 @@ import streamlit as st
 
 # Using object notation
 stock_list = st.sidebar.text_input(
-    "How would you like to be contacted?", "MSFT AAPL",
+    "Input your portfolio Ticker", "MSFT AAPL",
     placeholder="e.g. MSFT AAPL"
 )
-
 # Using "with" notation
 with st.sidebar:
-    add_radio = st.radio(
-        "Choose a shipping method",
-        ("Standard (5-15 days)", "Express (2-5 days)")
+    timeframe = st.selectbox(
+        "Select the timeframe on which to run the strategy",
+        ("5y","1y","9mo","3mo","1mo","5d","1d")
     )
 
 
