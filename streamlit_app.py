@@ -23,3 +23,4 @@ with st.sidebar:
 
 df=yf.download(stock_list.split(),start=start_date,end=end_date)
 st.dataframe(df,height=100)
+st.dataframe(df["Adj Close"])
