@@ -22,5 +22,6 @@ with st.sidebar:
     )
 
 df=yf.download(stock_list.replace(" ",", "),start=start_date,end=end_date)
+st.write(df.shape)
 st.dataframe(df,height=200)
 st.dataframe(df["Adj Close"])
