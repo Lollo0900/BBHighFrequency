@@ -44,9 +44,9 @@ with (st.sidebar):
     ,placeholder="e.g. 5"
     )
 
-    entry_z= st.slider("Select the entry Z-score for the strategy:",min_value=-5, max_vaLue=5, value=-2)
+    entry_z= st.slider("Select the entry Z-score for the strategy:",min_value=-5, max_value=5, value=-2)
 
-    exit_z = st.slider("Select the exit Z-score for the strategy:", min_value=-5, max_vaLue=5, value=3)
+    exit_z = st.slider("Select the exit Z-score for the strategy:", min_value=-5, max_value=5, value=3)
 
 df=yf.download(stock_list.replace(" ",", "),start=start_date,end=end_date,auto_adjust=False)
 st.write("Here we summarise the historical data for the chosen stocks.")
