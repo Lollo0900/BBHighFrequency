@@ -28,8 +28,8 @@ with (st.sidebar):
         "Input the end date:","2023-06-01",
         placeholder="e.g. %Y-%m-%d"
     )
-    johansen_data=st.text_input("Input the amount of data (in absolute units)\n to be used  for the Johansen Test.","5"
-    ,placeholder="e.g. 10"
+    johansen_data=st.text_input("Input the amount of data (in absolute units)\n to be used  for the Johansen Test:", "10"
+    ,placeholder="e.g. 15"
     )
     options={"No deterministic Term":-1 ,"Constant Term":0 ,"Linear Trend":1}
     johansen_option=st.selectbox("Select the Johansen test model:",options.keys())
@@ -39,8 +39,7 @@ df=yf.download(stock_list.replace(" ",", "),start=start_date,end=end_date,auto_a
 st.write("Here we summarise the historical data for the chosen stocks.")
 st.dataframe(df,height=200)
 
-st.write("An initial Johansen test on the first " + johansen_data + " data gives the following results:" )
-
+st.write("An initial Johansen test on the first " + johansen_data + " data entries gives the following results:" )
 j_portfolio=JohansenPortfolio()
 # Fitting the data on a dataset
 j_portfolio.fit(df['Adj Close'].iloc[:int(johansen_data)], det_order=johansen_option)
@@ -59,7 +58,8 @@ data={'Trace Statistic': j_trace_statistics.iloc[-1],'Confidence 90%':j_trace_st
 jtest_trace=pd.DataFrame(data)
 st.table(jtest_trace)
 
-
+st.write("The test has an half life of:",half_life, ", and lead to the following hedge ratios:")
+st.table(j_hedge_ratios)
 
 spread = construct_spread(df['Adj Close'], hedge_ratios=j_hedge_ratios.iloc[0])
 fig=plt.figure(1)
@@ -68,7 +68,7 @@ plt.plot(spread)
 plt.grid()
 st.pyplot(fig)
 half_life=get_half_life_of_mean_reversion(spread)
-st.write(half_life)
+st.write()
 # Creating a strategy
 strategy = BollingerBandsTradingRule(sma_window=20, std_window=20,
                                      entry_z_score=2.5, exit_z_score_delta=3)
