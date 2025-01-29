@@ -94,7 +94,7 @@ strategy = BollingerBandsTradingRule(sma_window=lookback, std_window=lookback,
                                      entry_z_score=entry_z, exit_z_score_delta=exit_z)
 strategy.update_spread_value(spread[0])
 # Feeding spread values to the strategy one by one
-for time, value in spread.iteritems():
+for time, value in spread.items():
     strategy.update_spread_value(value)
     # Checking if logic for opening a trade is triggered
     trade, side = strategy.check_entry_signal()
