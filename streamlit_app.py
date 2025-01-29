@@ -75,3 +75,4 @@ st.write()
 # Creating a strategy
 strategy = BollingerBandsTradingRule(sma_window=20, std_window=20,
                                      entry_z_score=2.5, exit_z_score_delta=3)
+st.write("Hello!")
