@@ -43,7 +43,7 @@ st.write("An initial Johansen test on the first " + johansen_data + " data gives
 
 j_portfolio=JohansenPortfolio()
 # Fitting the data on a dataset
-j_portfolio.fit(df['Adj Close'][johansen_data:], det_order=johansen_option)
+j_portfolio.fit(df['Adj Close'].iloc[johansen_data:], det_order=johansen_option)
 # Getting results of the eigenvalue and trace Johansen tests
 j_eigenvalue_statistics = j_portfolio.johansen_eigen_statistic
 j_trace_statistics = j_portfolio.johansen_trace_statistic
