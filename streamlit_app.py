@@ -61,10 +61,11 @@ data={'Trace Statistic': j_trace_statistics.iloc[-1],'Confidence 90%':j_trace_st
 jtest_trace=pd.DataFrame(data)
 st.table(jtest_trace)
 
-st.write("The test has an half life of:",half_life, ", and lead to the following hedge ratios:")
+st.write("The test has an half life of:",half_life, ", and leads to the following hedge ratios:")
 st.table(j_hedge_ratios)
 
-spread = construct_spread(df['Adj Close'], hedge_ratios=j_hedge_ratios.iloc[0])
+spread = construct_spread(df['Adj Close'].iloc[int(johansen_data):], hedge_ratios=j_hedge_ratios.iloc[0])
+
 fig=plt.figure(1)
 plt.title("Spread value over time")
 plt.plot(spread)
