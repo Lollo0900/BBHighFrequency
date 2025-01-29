@@ -87,9 +87,23 @@ plt.title("Spread value over time")
 plt.plot(spread)
 plt.grid()
 st.pyplot(fig)
+st.write("Hello!")
 
 # Creating a strategy
 strategy = BollingerBandsTradingRule(sma_window=lookback, std_window=lookback,
                                      entry_z_score=entry_z, exit_z_score_delta=exit_z)
 strategy.update_spread_value(spread[0])
-st.write("Hello!")
+# Feeding spread values to the strategy one by one
+for time, value in spread.iteritems():
+    strategy.update_spread_value(value)
+    # Checking if logic for opening a trade is triggered
+    trade, side = strategy.check_entry_signal()
+    # Adding a trade if we decide to trade signal
+    if trade:
+        strategy.add_trade(start_timestamp=time, side_prediction=side)
+    # Update trades, close if logic is triggered
+    close = strategy.update_trades(update_timestamp=time)
+# Checking currently open trades
+open_trades = strategy.open_trades
+# Checking all closed trades
+closed_trades = strategy.closed_trades
