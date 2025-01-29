@@ -43,6 +43,7 @@ with (st.sidebar):
                            "of the Bollinger Band strategy", "5"
     ,placeholder="e.g. 5"
     )
+    lookback=int(lookback)
 
     entry_z= st.slider("Select the entry Z-score for the strategy:",min_value=0.0, max_value=5.0, value=1.5, step=0.1)
 
