@@ -108,5 +108,5 @@ open_trades = strategy.open_trades
 # Checking all closed trades
 closed_trades = strategy.closed_trades
 
-st.writes(open_trades)
-st.writes(closed_trades)
+st.write(open_trades)
+st.write(closed_trades)
