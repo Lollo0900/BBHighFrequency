@@ -112,4 +112,4 @@ open_trades_df=pd.DataFrame(open_trades)
 closed_trades_df=pd.DataFrame(closed_trades)
 
 st.dataframe(open_trades_df,height=200)
-st.table(closed_trades_df,height=200)
+st.table(closed_trades_df)
