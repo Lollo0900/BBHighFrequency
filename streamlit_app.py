@@ -28,7 +28,7 @@ with (st.sidebar):
         "Input the end date:","2023-06-01",
         placeholder="e.g. %Y-%m-%d"
     )
-    lookback=st.text_input("Input the lookback window in absolute units.","5"
+    johansen_data=st.text_input("Input the amount of data (in absolute units)\n to be used  for the Johansen Test.","5"
     ,placeholder="e.g. 10"
     )
     options={"No deterministic Term":-1 ,"Constant Term":0 ,"Linear Trend":1}
@@ -39,11 +39,11 @@ df=yf.download(stock_list.replace(" ",", "),start=start_date,end=end_date,auto_a
 st.write("Here we summarise the historical data for the chosen stocks.")
 st.dataframe(df,height=200)
 
-st.write("An initial Johansen test on the first " + lookback + " data gives the following results:" )
+st.write("An initial Johansen test on the first " + johansen_data + " data gives the following results:" )
 
 j_portfolio=JohansenPortfolio()
 # Fitting the data on a dataset
-j_portfolio.fit(df['Adj Close'], det_order=johansen_option)
+j_portfolio.fit(df['Adj Close'][johansen_data:], det_order=johansen_option)
 # Getting results of the eigenvalue and trace Johansen tests
 j_eigenvalue_statistics = j_portfolio.johansen_eigen_statistic
 j_trace_statistics = j_portfolio.johansen_trace_statistic
