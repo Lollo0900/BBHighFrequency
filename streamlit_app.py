@@ -52,11 +52,11 @@ with (st.sidebar):
 df=yf.download(stock_list.replace(" ",", "),start=start_date,end=end_date,auto_adjust=False)
 st.write("Here we summarise the historical data for the chosen stocks.")
 st.dataframe(df,height=200)
-new_df=df['Adj Close'].iloc[:int(johansen_data)].copy()
+
 st.write("An initial Johansen test on the first " + johansen_data + " data entries gives the following results:" )
 j_portfolio=JohansenPortfolio()
 # Fitting the data on a dataset
-j_portfolio.fit(new_df, det_order=johansen_option)
+j_portfolio.fit(df['Adj Close'].iloc[:int(johansen_data)], det_order=johansen_option)
 # Getting results of the eigenvalue and trace Johansen tests
 j_eigenvalue_statistics = j_portfolio.johansen_eigen_statistic
 j_trace_statistics = j_portfolio.johansen_trace_statistic
