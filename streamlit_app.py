@@ -108,5 +108,5 @@ open_trades = strategy.open_trades
 # Checking all closed trades
 closed_trades = strategy.closed_trades
 
-st.dataframe(pd.DataFrame(open_trades))
-st.dataframe(pd.DataFrame(closed_trades))
+st.dataframe(pd.DataFrame(open_trades),height=200)
+st.dataframe(pd.DataFrame(closed_trades),height=200)
