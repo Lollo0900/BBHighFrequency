@@ -24,16 +24,29 @@ with (st.sidebar):
         "Select the timeframe on which to run the strategy.\n Input the start date:","2023-03-01",
         placeholder="e.g. %Y-%m-%d"
     )
+
     end_date = st.text_input(
         "Input the end date:","2023-06-01",
         placeholder="e.g. %Y-%m-%d"
     )
-    johansen_data=st.text_input("Input the amount of data (in absolute units)\n to be used  for the Johansen Test:", "10"
+
+    johansen_data= st.text_input("Input the amount of data (in absolute units)\n"
+                                 " to be used  for the Johansen Test:", "10"
     ,placeholder="e.g. 15"
     )
+
     options={"No deterministic Term":-1 ,"Constant Term":0 ,"Linear Trend":1}
-    johansen_option=st.selectbox("Select the Johansen test model:",options.keys())
+    johansen_option= st.selectbox("Select the Johansen test model:",options.keys())
     johansen_option=options[johansen_option]
+
+    lookback= st.text_input("Input the lookback window for the moving averages \n "
+                           "of the Bollinger Band strategy", "5"
+    ,placeholder="e.g. 5"
+    )
+
+    entry_z= st.slider("Select the entry Z-score for the strategy:",min_value=-5, max_vaLue=5, value=-2)
+
+    exit_z = st.slider("Select the exit Z-score for the strategy:", min_value=-5, max_vaLue=5, value=3)
 
 df=yf.download(stock_list.replace(" ",", "),start=start_date,end=end_date,auto_adjust=False)
 st.write("Here we summarise the historical data for the chosen stocks.")
@@ -75,6 +88,7 @@ plt.grid()
 st.pyplot(fig)
 
 # Creating a strategy
-strategy = BollingerBandsTradingRule(sma_window=20, std_window=20,
-                                     entry_z_score=2.5, exit_z_score_delta=3)
+strategy = BollingerBandsTradingRule(sma_window=lookback, std_window=lookback,
+                                     entry_z_score=entry_z, exit_z_score_delta=exit_z)
+strategy.update_spread_value(spread[0])
 st.write("Hello!")
