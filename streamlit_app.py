@@ -49,6 +49,9 @@ j_trace_statistics = j_portfolio.johansen_trace_statistic
 j_cointegration_vectors = j_portfolio.cointegration_vectors
 j_hedge_ratios = j_portfolio.hedge_ratios
 
+spread = construct_spread(df['Adj Close'].iloc[:int(johansen_data)], hedge_ratios=j_hedge_ratios.iloc[0])
+half_life=get_half_life_of_mean_reversion(spread)
+
 data={'Eigen Statistic': j_eigenvalue_statistics.iloc[-1],'Confidence 90%':j_eigenvalue_statistics.iloc[0],
       'Confidence 95%':j_eigenvalue_statistics.iloc[1],'Confidence 99%':j_eigenvalue_statistics.iloc[2]}
 jtest_eigen=pd.DataFrame(data)
@@ -67,7 +70,6 @@ plt.title("Spread value over time")
 plt.plot(spread)
 plt.grid()
 st.pyplot(fig)
-half_life=get_half_life_of_mean_reversion(spread)
 st.write()
 # Creating a strategy
 strategy = BollingerBandsTradingRule(sma_window=20, std_window=20,
