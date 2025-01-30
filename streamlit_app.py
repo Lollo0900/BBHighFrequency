@@ -18,6 +18,10 @@ stock_list = st.sidebar.text_input(
 )
 # Using "with" notation
 with (st.sidebar):
+    # st.sidebar.markdown("[![
+    #   Title]('https://content.linkedin.com/content/dam/me/business/en-us/amp/brand-site/v2/bg/LI-Bug.svg.original.svg')](
+    #  'www.linkedin.com /in/ brian-f-rubin')")
+
     start_date = st.text_input(
         "Select the timeframe on which to run the strategy.\n Input the start date:", "2023-03-01",
         placeholder="e.g. %Y-%m-%d"
@@ -122,7 +126,7 @@ if bool(closed_trades):
 
 st.write("Running a Bollinger Band Strategy  with lookback ", lookback,
          ", entry Z-score ", entry_z, ", exit Z-score ", exit_z, ", on "
-         "the Adjusted Closed prices from " + start_date + " to " + end_date +
+                                                                 "the Adjusted Closed prices from " + start_date + " to " + end_date +
          ",\n results in the following closed trades:")
 st.dataframe(closed_trades_df)
 st.write("Whilst the open trades at the end date are:")
@@ -141,4 +145,5 @@ sharpe = (ave_r - risk_free) / sigma_r
 
 st.dataframe(returns)
 st.write("Resulting in an average return of ", "%.1f" % ave_r, "%, volatility of", "%.1f" % sigma_r, "% with a Sharpe "
-         "Ratio of ", "%.1f" % sharpe)
+                                                                                                     "Ratio of ",
+         "%.1f" % sharpe)
