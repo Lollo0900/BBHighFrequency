@@ -113,7 +113,7 @@ closed_trades_df=pd.DataFrame(closed_trades)
 
 for k in closed_trades.keys():
     a=closed_trades[k]
-pd.DataFrame(a)
+pd.DataFrame(a.items())
 st.dataframe(a)
 
 #st.dataframe(open_trades_df,height=200)
