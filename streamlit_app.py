@@ -116,7 +116,7 @@ if bool(closed_trades):
     closed_trades_df.loc['t1'] = copy.loc['t1']
 
 st.write("Running a Bollinger Band Strategy  with lookback ", lookback,
-         ", entry Z-score " + str(entry_z) + ", exit Z-score " + str(exit_z) + ", on "
+         ", entry Z-score ", entry_z, ", exit Z-score ", exit_z, ", on "
          "the Adjusted Closed prices from " + start_date + " to " + end_date +
          ",\n results in the following closed trades:")
 st.dataframe(closed_trades_df)
