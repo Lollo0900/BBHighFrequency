@@ -110,13 +110,8 @@ closed_trades = strategy.closed_trades
 
 open_trades_df=pd.DataFrame(open_trades)
 closed_trades_df=pd.DataFrame(closed_trades)
-
-for k in closed_trades.keys():
-    a=closed_trades[k]
-dfff=pd.DataFrame(a.items())
-dfff.set_index(0,inplace=True)
-dfff.drop('t1',axis=0,inplace=True)
-st.dataframe(dfff)
+closed_trades_df.drop('t1',axis=0,inplace=True)
+st.dataframe(closed_trades_df)
 
 #st.dataframe(open_trades_df,height=200)
 #st.table(closed_trades_df)
