@@ -110,10 +110,10 @@ closed_trades = strategy.closed_trades
 
 open_trades_df=pd.DataFrame(open_trades)
 closed_trades_df=pd.DataFrame(closed_trades)
-if open_trades_df:
+if not(open_trades_df.empty):
     open_trades_df.drop('uuid',axis=0,inplace=True)
 copy=closed_trades_df.copy()
-if closed_trades_df:
+if not(closed_trades_df.empty):
     closed_trades_df.drop('t1',axis=0,inplace=True)
     closed_trades_df.drop('uuid',axis=0,inplace=True)
     closed_trades_df.loc['t1']=copy.loc['t1']
