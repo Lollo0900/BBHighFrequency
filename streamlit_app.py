@@ -115,7 +115,7 @@ for k in closed_trades.keys():
     a=closed_trades[k]
 dfff=pd.DataFrame(a.items())
 dfff.set_index(0,inplace=True)
-st.dataframe(dfff.loc['start_value'])
+st.dataframe(dfff)
 
 #st.dataframe(open_trades_df,height=200)
 #st.table(closed_trades_df)
