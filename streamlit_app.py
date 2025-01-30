@@ -102,7 +102,7 @@ for time, value in spread.items():
     if trade:
         strategy.add_trade(start_timestamp=pd.Timestamp(time), side_prediction=side)
     # Update trades, close if logic is triggered
-    close = strategy.update_trades(update_timestamp=time)
+    close = strategy.update_trades(update_timestamp=pd.Timestamp(time))
 # Checking currently open trades
 open_trades = strategy.open_trades
 # Checking all closed trades
