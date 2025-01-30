@@ -7,6 +7,7 @@ from arbitragelab.trading import BollingerBandsTradingRule
 from arbitragelab.cointegration_approach import get_half_life_of_mean_reversion
 from arbitragelab.cointegration_approach.johansen import JohansenPortfolio
 
+
 st.write("We are going to interactively benchmark a Bollinger Bands Strategy"
          " on a chosen set of stocks.")
 
@@ -105,10 +106,11 @@ closed_trades = strategy.closed_trades
 
 open_trades_df = pd.DataFrame(open_trades)
 closed_trades_df = pd.DataFrame(closed_trades)
-if open_trades_df.empty:
+
+if bool(open_trades):
     open_trades_df.drop('uuid', axis=0, inplace=True)
 copy = closed_trades_df.copy()
-if closed_trades_df.empty:
+if bool(closed_trades):
     closed_trades_df.drop('t1', axis=0, inplace=True)
     closed_trades_df.drop('uuid', axis=0, inplace=True)
     closed_trades_df.loc['t1'] = copy.loc['t1']
