@@ -100,9 +100,9 @@ for time, value in spread.items():
     trade, side = strategy.check_entry_signal()
     # Adding a trade if we decide to trade signal
     if trade:
-        strategy.add_trade(start_timestamp=pd.Timestamp(time), side_prediction=side)
+        strategy.add_trade(start_timestamp=time, side_prediction=side)
     # Update trades, close if logic is triggered
-    close = strategy.update_trades(update_timestamp=pd.Timestamp(time))
+    close = strategy.update_trades(update_timestamp=time)
 # Checking currently open trades
 open_trades = strategy.open_trades
 # Checking all closed trades
@@ -110,10 +110,11 @@ closed_trades = strategy.closed_trades
 
 open_trades_df=pd.DataFrame(open_trades)
 closed_trades_df=pd.DataFrame(closed_trades)
-#copy=closed_trades_df.copy()
-#closed_trades_df.drop('t1',axis=0,inplace=True)
-#closed_trades_df.loc['t1']=copy.loc['t1']
+copy=closed_trades_df.copy()
+closed_trades_df.drop('t1',axis=0,inplace=True)
+closed_trades_df.drop('uuid',axis=0,inplace=True)
+closed_trades_df.loc['t1']=copy.loc['t1']
 st.dataframe(closed_trades_df)
 
-#st.dataframe(open_trades_df,height=200)
+st.dataframe(open_trades_df,height=200)
 #st.table(closed_trades_df)
