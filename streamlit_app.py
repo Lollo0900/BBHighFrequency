@@ -110,7 +110,9 @@ closed_trades = strategy.closed_trades
 
 open_trades_df=pd.DataFrame(open_trades)
 closed_trades_df=pd.DataFrame(closed_trades)
+copy=closed_trades_df.copy()
 closed_trades_df.drop('t1',axis=0,inplace=True)
+closed_trades_df.loc[len(closed_trades_df)]=copy['t1']
 st.dataframe(closed_trades_df)
 
 #st.dataframe(open_trades_df,height=200)
