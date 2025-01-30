@@ -18,11 +18,14 @@ stock_list = st.sidebar.text_input(
 )
 # Using "with" notation
 with (st.sidebar):
-    # st.sidebar.markdown("[![
-    #   Title]('https://content.linkedin.com/content/dam/me/business/en-us/amp/brand-site/v2/bg/LI-Bug.svg.original.svg')](
-    #  'www.linkedin.com /in/ brian-f-rubin')")
+    st.title("📊 Bollinger Strategy Model")
+    st.write("`Created by:`")
+    linkedin_url = "https://www.linkedin.com/in/lorenzo-mansi-815b31221/"
+    st.markdown(
+        f'<a href="{linkedin_url}" target="_blank" style="text-decoration: none; color: inherit;"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" width="25" height="25" style="vertical-align: middle; margin-right: 10px;">`Mansi, Lorenzo`</a>',
+        unsafe_allow_html=True)
 
-    start_date = st.text_input(
+start_date = st.text_input(
         "Select the timeframe on which to run the strategy.\n Input the start date:", "2023-03-01",
         placeholder="e.g. %Y-%m-%d"
     )
