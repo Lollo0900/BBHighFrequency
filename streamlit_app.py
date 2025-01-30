@@ -122,3 +122,4 @@ st.write("Running a Bollinger Band Strategy  with lookback ", lookback,
 st.dataframe(closed_trades_df)
 st.write("Whilst the open trades at the end date are:")
 st.dataframe(open_trades_df)
+st.write("Hello!")
