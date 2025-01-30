@@ -25,7 +25,7 @@ with (st.sidebar):
         f'<a href="{linkedin_url}" target="_blank" style="text-decoration: none; color: inherit;"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" width="25" height="25" style="vertical-align: middle; margin-right: 10px;">`Mansi, Lorenzo`</a>',
         unsafe_allow_html=True)
 
-start_date = st.text_input(
+    start_date = st.text_input(
         "Select the timeframe on which to run the strategy.\n Input the start date:", "2023-03-01",
         placeholder="e.g. %Y-%m-%d"
     )
