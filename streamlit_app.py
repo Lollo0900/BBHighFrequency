@@ -110,12 +110,13 @@ closed_trades = strategy.closed_trades
 
 open_trades_df=pd.DataFrame(open_trades)
 closed_trades_df=pd.DataFrame(closed_trades)
-
-open_trades_df.drop('uuid',axis=0,inplace=True)
+if open_trades_df:
+    open_trades_df.drop('uuid',axis=0,inplace=True)
 copy=closed_trades_df.copy()
-closed_trades_df.drop('t1',axis=0,inplace=True)
-closed_trades_df.drop('uuid',axis=0,inplace=True)
-closed_trades_df.loc['t1']=copy.loc['t1']
+if closed_trades_df:
+    closed_trades_df.drop('t1',axis=0,inplace=True)
+    closed_trades_df.drop('uuid',axis=0,inplace=True)
+    closed_trades_df.loc['t1']=copy.loc['t1']
 
 st.write("Running a Bolliger Band Stratey  with lookback ",lookback,", entry Z-score "+str(entry_z)+", exit Z-score "+str(exit_z)+", on "
         "the Adjusted Closed prices from "+start_date+" to "+end_date+",\n results in the following closed trades:")
