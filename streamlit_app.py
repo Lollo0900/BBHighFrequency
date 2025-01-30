@@ -82,8 +82,8 @@ data = {'Trace Statistic': j_trace_statistics.iloc[-1], 'Confidence 90%': j_trac
 jtest_trace = pd.DataFrame(data)
 st.table(jtest_trace)
 
-st.write("The test has an half life of:", half_life, ", and leads to the following hedge ratios:")
-st.table(j_hedge_ratios)
+st.write("The test yields an half life of:", half_life, ", and leads to the following hedge ratios:")
+st.dataframe(j_hedge_ratios)
 
 st.write("Given those hedge rations, the spread of associated the portfolio evolves like:")
 spread = construct_spread(df['Adj Close'].iloc[int(johansen_data):], hedge_ratios=j_hedge_ratios.iloc[0])
