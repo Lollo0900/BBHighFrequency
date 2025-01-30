@@ -2,3 +2,4 @@ yfinance
 arbitragelab
 pandas
 matplotlib
+numpy

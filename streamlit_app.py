@@ -1,4 +1,5 @@
 import streamlit as st
+import numpy as np
 import yfinance as yf
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -6,7 +7,6 @@ from arbitragelab.hedge_ratios import construct_spread
 from arbitragelab.trading import BollingerBandsTradingRule
 from arbitragelab.cointegration_approach import get_half_life_of_mean_reversion
 from arbitragelab.cointegration_approach.johansen import JohansenPortfolio
-
 
 st.write("We are going to interactively benchmark a Bollinger Bands Strategy"
          " on a chosen set of stocks.")
@@ -46,6 +46,11 @@ with (st.sidebar):
     entry_z = st.slider("Select the entry Z-score for the strategy:", min_value=0.0, max_value=5.0, value=1.5, step=0.1)
 
     exit_z = st.slider("Select the exit Z-score for the strategy:", min_value=0.0, max_value=5.0, value=2.0, step=0.1)
+
+    risk_free = st.text_input("Input the risk-free interest rate (in %) to be used to compute the Sharpe ratio", "3",
+                              placeholder="e.g. 5"
+                              )
+    risk_free = float(risk_free)
 
 df = yf.download(stock_list.replace(" ", ", "), start=start_date, end=end_date, auto_adjust=False)
 st.write("Here we summarise the historical data for the chosen stocks.")
@@ -122,4 +127,18 @@ st.write("Running a Bollinger Band Strategy  with lookback ", lookback,
 st.dataframe(closed_trades_df)
 st.write("Whilst the open trades at the end date are:")
 st.dataframe(open_trades_df)
-st.write("Hello!")
+
+st.write("Each closed trade results in a return of:")
+returns = {"Trade": None, "Return (in %)": None}
+returns = pd.DataFrame(returns, index=[0])
+for key in closed_trades.keys():
+    returns.loc[len(returns)] = [pd.Timestamp(key),
+                                 100 * (closed_trades[key]['end_value'] - closed_trades[key]['start_value']) /
+                                 closed_trades[key]['start_value']]
+ave_r = np.mean(returns["Return (in %)"])
+sigma_r = np.std(returns["Return (in %)"])
+sharpe = (ave_r - risk_free) / sigma_r
+
+st.dataframe(returns)
+st.write("Resulting in an average return of ", "%.1f" % ave_r, "%, volatility of", "%.1f" % sigma_r, "% with a Sharpe "
+         "Ratio of ", "%.1f" % sharpe)
