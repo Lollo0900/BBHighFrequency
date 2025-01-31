@@ -9,7 +9,7 @@ from arbitragelab.cointegration_approach import get_half_life_of_mean_reversion
 from arbitragelab.cointegration_approach.johansen import JohansenPortfolio
 
 st.write("We are going to interactively benchmark a Bollinger Bands Strategy"
-         " on a chosen set of stocks.")
+         " on a chosen set of stocks. The strategy works by entering a position only if")
 
 # Using object notation
 stock_list = st.sidebar.text_input(
