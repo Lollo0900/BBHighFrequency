@@ -28,7 +28,7 @@ with (st.sidebar):
         st.markdown(
             f'<a href="{linkedin_url}" target="_blank" style="text-decoration: none; color: inherit;"><img '
             f'src="https://cdn-icons-png.flaticon.com/512/174/174857.png" width="25" height="25" style="vertical-align:'
-            f'middle; margin-right: 10px;">`Mansi, Lorenzo`</a>',
+            f'middle; margin-left: 10px;">`Mansi, Lorenzo`</a>',
             unsafe_allow_html=True)
 
     stock_list = st.text_input(
