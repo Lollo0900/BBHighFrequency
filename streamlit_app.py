@@ -20,14 +20,16 @@ st.write("We are going to interactively benchmark a Bollinger Bands Strategy"
 st.sidebar.title("📊 Bollinger Strategy Model")
 # Using "with" notation
 with (st.sidebar):
-    st.title("📊 Bollinger Strategy Model")
-    st.write("`Created by:`")
-    linkedin_url = "https://www.linkedin.com/in/lorenzo-mansi-815b31221/"
-    st.markdown(
-        f'<a href="{linkedin_url}" target="_blank" style="text-decoration: none; color: inherit;"><img '
-        f'src="https://cdn-icons-png.flaticon.com/512/174/174857.png" width="25" height="25" style="vertical-align: '
-        f'middle; margin-right: 10px;">`Mansi, Lorenzo`</a>',
-        unsafe_allow_html=True)
+    col1, col2 = st.columns(2)
+    with col1:
+        st.write("`Created by:`")
+    with col2:
+        linkedin_url = "https://www.linkedin.com/in/lorenzo-mansi-815b31221/"
+        st.markdown(
+            f'<a href="{linkedin_url}" target="_blank" style="text-decoration: none; color: inherit;"><img '
+            f'src="https://cdn-icons-png.flaticon.com/512/174/174857.png" width="25" height="25" style="vertical-align:'
+            f'middle; margin-right: 10px;">`Mansi, Lorenzo`</a>',
+            unsafe_allow_html=True)
 
     stock_list = st.text_input(
         "Input your portfolio Ticker:", "MSFT AAPL",
