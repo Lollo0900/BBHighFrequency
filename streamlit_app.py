@@ -20,7 +20,7 @@ st.write("We are going to interactively benchmark a Bollinger Bands Strategy"
 st.sidebar.title("📊 Bollinger Strategy Model")
 # Using "with" notation
 with (st.sidebar):
-    col1, col2 = st.columns(2)
+    col1, col2 = st.columns([0.3,0.7])
     with col1:
         st.write("`Created by:`")
     with col2:
