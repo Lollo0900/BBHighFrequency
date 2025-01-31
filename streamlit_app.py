@@ -22,7 +22,7 @@ st.sidebar.title("📊 Bollinger Strategy Model")
 with (st.sidebar):
     col1, col2 = st.columns([0.5, 0.65])
     with col1:
-        st.write("`Created by:`")
+        st.write('Created by:')
     with col2:
         linkedin_url = "https://www.linkedin.com/in/lorenzo-mansi-815b31221/"
         st.markdown(
