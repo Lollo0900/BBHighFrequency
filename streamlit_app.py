@@ -8,6 +8,7 @@ from arbitragelab.trading import BollingerBandsTradingRule
 from arbitragelab.cointegration_approach import get_half_life_of_mean_reversion
 from arbitragelab.cointegration_approach.johansen import JohansenPortfolio
 
+st.title("Bollinger Bands Trading Strategy")
 st.write("We are going to interactively benchmark a Bollinger Bands Strategy"
          "on a chosen set of stocks using the arbitragelab package of Hudson-And-Thames. The strategy works by "
          "looking for cointegration relations between the input stocks in order to create a mean reverting portfolio. "
@@ -16,10 +17,7 @@ st.write("We are going to interactively benchmark a Bollinger Bands Strategy"
          "windows of lookback days. The strategy exits a position only when it deviates entryZscore+exitZscore_delta.")
 
 # Using object notation
-stock_list = st.sidebar.text_input(
-    "Input your portfolio Ticker:", "MSFT AAPL",
-    placeholder="e.g. MSFT AAPL"
-)
+st.sidebar.title("📊 Bollinger Strategy Model")
 # Using "with" notation
 with (st.sidebar):
     st.title("📊 Bollinger Strategy Model")
@@ -30,6 +28,11 @@ with (st.sidebar):
         f'src="https://cdn-icons-png.flaticon.com/512/174/174857.png" width="25" height="25" style="vertical-align: '
         f'middle; margin-right: 10px;">`Mansi, Lorenzo`</a>',
         unsafe_allow_html=True)
+
+    stock_list = st.text_input(
+        "Input your portfolio Ticker:", "MSFT AAPL",
+        placeholder="e.g. MSFT AAPL"
+    )
 
     start_date = st.text_input(
         "Select the timeframe on which to run the strategy.\n Input the start date:", "2023-03-01",
