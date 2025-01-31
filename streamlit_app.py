@@ -9,7 +9,11 @@ from arbitragelab.cointegration_approach import get_half_life_of_mean_reversion
 from arbitragelab.cointegration_approach.johansen import JohansenPortfolio
 
 st.write("We are going to interactively benchmark a Bollinger Bands Strategy"
-         " on a chosen set of stocks. The strategy works by entering a position only if")
+         "on a chosen set of stocks using the arbitragelab package of Hudson-And-Thames. The strategy works by "
+         "looking for cointegration relations between the input stocks in order to create a mean reverting portfolio. "
+         "The entry signal for a position is given when the average of the portfolio value falls more than "
+         "entryZscore away from the standard deviation. Both average and standard deviation are computed in a "
+         "windows of lookback days. The strategy exits a position only when it deviates entryZscore+exitZscore_delta.")
 
 # Using object notation
 stock_list = st.sidebar.text_input(
