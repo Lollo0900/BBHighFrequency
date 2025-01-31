@@ -22,7 +22,9 @@ with (st.sidebar):
     st.write("`Created by:`")
     linkedin_url = "https://www.linkedin.com/in/lorenzo-mansi-815b31221/"
     st.markdown(
-        f'<a href="{linkedin_url}" target="_blank" style="text-decoration: none; color: inherit;"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" width="25" height="25" style="vertical-align: middle; margin-right: 10px;">`Mansi, Lorenzo`</a>',
+        f'<a href="{linkedin_url}" target="_blank" style="text-decoration: none; color: inherit;"><img '
+        f'src="https://cdn-icons-png.flaticon.com/512/174/174857.png" width="25" height="25" style="vertical-align: '
+        f'middle; margin-right: 10px;">`Mansi, Lorenzo`</a>',
         unsafe_allow_html=True)
 
     start_date = st.text_input(
@@ -129,7 +131,7 @@ if bool(closed_trades):
 
 st.write("Running a Bollinger Band Strategy  with lookback ", lookback,
          ", entry Z-score ", entry_z, ", exit Z-score ", exit_z, ", on "
-                                                                 "the Adjusted Closed prices from " + start_date + " to " + end_date +
+         "the Adjusted Closed prices from " + start_date + "to " + end_date +
          ",\n results in the following closed trades:")
 st.dataframe(closed_trades_df)
 st.write("Whilst the open trades at the end date are:")
