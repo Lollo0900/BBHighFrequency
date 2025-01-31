@@ -26,9 +26,9 @@ with (st.sidebar):
     with col2:
         linkedin_url = "https://www.linkedin.com/in/lorenzo-mansi-815b31221/"
         st.markdown(
-            f'<a href="{linkedin_url}" target="_blank" style="text-decoration: none; color: inherit;"><img '
+            f'<a href="{linkedin_url}" target="_blank" style="text-decoration: none; color: inherit;">`Mansi, Lorenzo` <img '
             f'src="https://cdn-icons-png.flaticon.com/512/174/174857.png" width="25" height="25" style="vertical-align:'
-            f'middle; margin-left: 10px;">`Mansi, Lorenzo`</a>',
+            f'middle; margin-left: 10px;"></a>',
             unsafe_allow_html=True)
 
     stock_list = st.text_input(
